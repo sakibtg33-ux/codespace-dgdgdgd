@@ -17,6 +17,7 @@ if __name__ == "__main__" :
     api_id=Config.API_ID,
     api_hash=Config.API_HASH,
     sleep_threshold=300,
+    upload_boost=True,
     plugins=plugins)
     print("🎊 I AM ALIVE 🎊  • Support @shakib2016")
     Client.run()

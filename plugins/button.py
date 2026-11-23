@@ -40,7 +40,7 @@ async def youtube_dl_call_back(bot, update):
         return False
     
     youtube_dl_url = update.message.reply_to_message.text
-    custom_file_name = f"{response_json.get('title')}_{youtube_dl_format}.{youtube_dl_ext}"
+    custom_file_name = f"{response_json.get('title') or 'video'}_{youtube_dl_format}.{youtube_dl_ext}"
     youtube_dl_username = None
     youtube_dl_password = None
     
@@ -82,8 +82,9 @@ async def youtube_dl_call_back(bot, update):
     )
     
     description = Translation.CUSTOM_CAPTION_UL_FILE
-    if "fulltitle" in response_json:
-        description = response_json["fulltitle"][0:1021]
+    fulltitle = response_json.get("fulltitle")
+    if fulltitle:
+        description = fulltitle[0:1021]
     
     tmp_directory_for_each_user = os.path.join(Config.DOWNLOAD_LOCATION, f"{update.from_user.id}{random1}")
     os.makedirs(tmp_directory_for_each_user, exist_ok=True)

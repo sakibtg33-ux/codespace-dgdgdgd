@@ -1,3 +1,17 @@
+# 1. ffmpeg install
+sudo apt update && sudo apt install -y ffmpeg
+ffmpeg -version
+
+# 2. Sob Python package install (mirror diye)
+python3 -m pip uninstall -y pyrogram pyroblack
+python3 -m pip install -U pyroblack yt-dlp aiofiles aiohttp motor pymongo Pillow requests hachoir filetype tldextract ffmpeg-python pyromod pytube flask numpy pytz psutil dnspython olefile TgCrypto-pyroblack -i https://mirrors.aliyun.com/pypi/simple/ --trusted-host mirrors.aliyun.com --timeout 100 --retries 10
+
+# 3. Check
+python3 -m yt_dlp --version
+
+# 4. Bot chalao
+
+
 python3 bot.py
 
 

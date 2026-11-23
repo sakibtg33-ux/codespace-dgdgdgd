@@ -1,3 +1,7 @@
+python3 bot.py
+
+
+
 ## URL Uᴘʟᴏᴀᴅᴇʀ ʙᴏᴛ V4 🚀
 
 

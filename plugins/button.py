@@ -1,6 +1,7 @@
 # ©️ LISA-KOREA | @LISA_FAN_LK | NT_BOT_CHANNEL
 
 import logging
+import sys
 import asyncio
 import json
 import os
@@ -89,7 +90,7 @@ async def youtube_dl_call_back(bot, update):
     download_directory = os.path.join(tmp_directory_for_each_user, custom_file_name)
     
     command_to_exec = [
-        "yt-dlp",
+        sys.executable, "-m", "yt_dlp",
         "-c",
         "--max-filesize", str(Config.TG_MAX_FILE_SIZE),
         "--embed-subs",
@@ -103,7 +104,7 @@ async def youtube_dl_call_back(bot, update):
     
     if tg_send_type == "audio":
         command_to_exec = [
-            "yt-dlp",
+            sys.executable, "-m", "yt_dlp",
             "-c",
             "--max-filesize", str(Config.TG_MAX_FILE_SIZE),
             "--bidi-workaround",

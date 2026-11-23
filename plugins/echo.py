@@ -2,6 +2,7 @@
 
 
 import logging
+import sys
 logging.basicConfig(level=logging.DEBUG,
                     format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
 logger = logging.getLogger(__name__)
@@ -118,7 +119,7 @@ async def echo(bot, update):
                 url = url[o:o + l]
     if Config.HTTP_PROXY != "":
         command_to_exec = [
-            "yt-dlp",
+            sys.executable, "-m", "yt_dlp",
             "--no-warnings",
             "--allow-dynamic-mpd",
             "--cookies", cookies_file,
@@ -129,7 +130,7 @@ async def echo(bot, update):
         ]
     else:
         command_to_exec = [
-            "yt-dlp",
+            sys.executable, "-m", "yt_dlp",
             "--no-warnings",
             "--allow-dynamic-mpd",
             "--cookies", cookies_file,

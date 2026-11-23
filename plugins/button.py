@@ -2,6 +2,7 @@
 
 import logging
 import sys
+import re
 import asyncio
 import json
 import os
@@ -40,7 +41,9 @@ async def youtube_dl_call_back(bot, update):
         return False
     
     youtube_dl_url = update.message.reply_to_message.text
-    custom_file_name = f"{response_json.get('title') or 'video'}_{youtube_dl_format}.{youtube_dl_ext}"
+    _title = (response_json.get('title') or 'video').split('?')[0].split('#')[0]
+    _title = re.sub(r'[^A-Za-z0-9._-]+', '_', _title).strip('_')[:50] or 'video'
+    custom_file_name = f"{_title}_{youtube_dl_format}.{youtube_dl_ext}"
     youtube_dl_username = None
     youtube_dl_password = None
     
@@ -258,7 +261,9 @@ async def youtube_dl_call_back(bot, update):
             time_taken_for_upload = (end_two - end_one).seconds
             try:
                 shutil.rmtree(tmp_directory_for_each_user)
-                os.remove(thumbnail)
+                _thumb = locals().get('thumbnail') or locals().get('thumb_image_path')
+                if _thumb and os.path.isfile(_thumb):
+                    os.remove(_thumb)
             except Exception as e:
                 logger.error(f"Error cleaning up: {e}")
             

@@ -1,0 +1,10 @@
+{
+  "name": "Telegram Bot",
+  "image": "mcr.microsoft.com/devcontainers/python:3.11",
+  "postCreateCommand": "sudo apt-get update && sudo apt-get install -y ffmpeg && python3 -m pip install -U yt-dlp",
+  "customizations": {
+    "vscode": {
+      "extensions": ["ms-python.python"]
+    }
+  }
+}
